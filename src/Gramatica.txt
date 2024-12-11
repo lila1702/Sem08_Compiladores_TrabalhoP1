@@ -41,3 +41,5 @@
 <Condicao> ::= STRING COMPARADOR <Valor> ("AND" <Condicao> | "OR" <Condicao>)?
 
 <Comparador> ::= "==" | "!=" | "<" | ">" | "<=" | ">="
+
+

@@ -1,6 +1,6 @@
 # lexer.py
 from consts import Consts
-from token import Token
+from my_tokens import Token
 
 class Lexer:
     def __init__(self, source_code):
