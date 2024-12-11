@@ -1,0 +1,26 @@
+<Programa> ::= <Elemento>*
+<Elemento> ::= <Personagem> | <Cenario> | <Acao> | <Item>
+
+<Personagem> ::= PERSONAGEM STRING LBRACE 
+                "classe" COLON STRING SEMICOLON 
+                "nivel" COLON INT SEMICOLON 
+                "atributos" COLON <ListaAtributos> SEMICOLON 
+                RBRACE
+
+<ListaAtributos> ::= <Atributo> (COMMA <Atributo>)*
+<Atributo> ::= STRING INT
+
+<Cenario> ::= CENARIO STRING LBRACE 
+            "descricao" COLON STRING SEMICOLON 
+            "localizacao" COLON STRING SEMICOLON 
+            RBRACE
+
+<Acao> ::= ACAO STRING LBRACE 
+            "efeito" COLON STRING SEMICOLON 
+            "duracao" COLON INT SEMICOLON 
+            RBRACE
+
+<Item> ::= ITEM STRING LBRACE
+            "descricao" COLON STRING SEMICOLON
+            "tipo" COLON STRING SEMICOLON
+            RBRACE
