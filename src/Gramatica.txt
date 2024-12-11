@@ -1,5 +1,5 @@
 <Programa> ::= <Elemento>*
-<Elemento> ::= <Personagem> | <Cenario> | <Acao> | <Item>
+<Elemento> ::= <Personagem> | <Cenario> | <Acao> | <Item> | <Variavel> | <Escolha>
 
 <Personagem> ::= PERSONAGEM STRING LBRACE 
                 "classe" COLON STRING SEMICOLON 
@@ -24,3 +24,20 @@
             "descricao" COLON STRING SEMICOLON
             "tipo" COLON STRING SEMICOLON
             RBRACE
+
+<Variavel> ::= VARIAVEL STRING ASSIGN <Valor>
+<Valor> ::= STRING | INT | FLOAT | BOOLEAN
+
+<Escolha> ::= ESCOLHA LBRACE <Opcao>* RBRACE
+<Opcao> ::= OPCAO STRING COLON LBRACE 
+            "texto" COLON STRING SEMICOLON 
+            "acao" COLON <ElementoAcao> SEMICOLON 
+            "condicao" COLON <Condicao>? SEMICOLON 
+            RBRACE
+
+<ElementoAcao> ::= <Acao> | <ModificaVariavel>
+<ModificaVariavel> ::= VARIAVEL STRING ASSIGN <Valor>
+
+<Condicao> ::= STRING COMPARADOR <Valor> ("AND" <Condicao> | "OR" <Condicao>)?
+
+<Comparador> ::= "==" | "!=" | "<" | ">" | "<=" | ">="
