@@ -6,7 +6,7 @@ programa {
         }
         
         cenario "Floresta amaldiçoada" {
-                descricao: "Um canteiro cheio de árvores, escuro e com uma aura sombria, pesada, parecendo que alguém está perto";
+                descricao: "Um canteiro cheio de árvores, com uma aura sombria, parecendo que alguém observa";
         }
 
         item "Espada Longa" {
@@ -19,7 +19,18 @@ programa {
         escolha {
                 opcao "Explorar a floresta" {
                         texto: "Explorar atrás das árvores, procurando algo anormal";
-                        acao: 
+                        acao: ACAO "Explorar Floresta" {
+                                descricao: "Explorando a floresta, você encontra um coelho com olhos roxos";
+                                resultado: "Encontra o coelho amaldiçoado";
+                        }, "Floresta Explorada" = True;
+                }
+
+                opcao "Esperar alguém" {
+                        texto: "Esperar até alguma coisa acontecer";
+                        acao: ACAO "Esperar na floresta" {
+                                descricao: "Nada acontece";
+                                resultado: "Você está com fome";
+                        };
                 }
         }
 }

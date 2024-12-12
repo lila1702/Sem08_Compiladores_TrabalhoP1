@@ -27,7 +27,7 @@
             "resultado" COLON INT SEMICOLON 
             RBRACE
 
-<Variavel> ::= VARIAVEL STRING ASSIGN <Valor> SEMICOLON
+<Variavel> ::= VARIAVEL STRING ASSIGN <Valor>
 <Valor> ::= STRING | INT | FLOAT | BOOLEAN
 
 <Escolha> ::= ESCOLHA LBRACE <Opcao>* RBRACE
@@ -37,7 +37,7 @@
             "condicao" COLON <Condicao>? SEMICOLON 
             RBRACE
 
-<ElementoAcao> ::= <Acao> | <ModificaVariavel>
+<ElementoAcao> ::= <Acao> (COMMA <ModificaVariavel>)*
 <ModificaVariavel> ::= VARIAVEL STRING ASSIGN <Valor> SEMICOLON
 
 <Condicao> ::= STRING COMPARADOR <Valor> ("AND" <Condicao> | "OR" <Condicao>)?
