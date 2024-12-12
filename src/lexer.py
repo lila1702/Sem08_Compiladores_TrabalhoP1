@@ -31,6 +31,29 @@ class Lexer:
             elif (self.current in [Consts.LBRACE, Consts.RBRACE, Consts.COLON, Consts.SEMICOLON, Consts.COMMA]):
                 tokens.append(Token(self.current))
                 self.__advance()
+            elif (self.current == "="):
+                self.__advance()
+                # Comparação de Igualdade
+                if (self.current == "="):
+                    self.__advance()
+                    tokens.append(Token(Consts.IGUAL))
+                # Atribuição
+                else:
+                    tokens.append(Token(Consts.ASSIGN))
+            elif (self.current in "<>!="):
+                char = self.current
+                self.__advance()
+                # Para <=, >=, !=
+                if (self.current == "="):
+                    if (char == ">"):
+                        tokens.append(Token(Consts.MAIORIGUAL))
+                    elif (char == "<"):
+                        tokens.append(Token(Consts.MENORIGUAL))
+                    else:
+                        tokens.append(Token(Consts.DIFERENTE))
+                    self.__advance()
+                else:
+                    tokens.append(Token(Consts.MAIOR if char == ">" else Consts.MENOR))
             else:
                 raise Exception(f"Erro: Símbolo '{self.current}' desconhecido na linha {self.linha + 1}")
         tokens.append(Token(Consts.EOF))
@@ -38,10 +61,33 @@ class Lexer:
 
     def __make_number(self):
         num_str = ''
-        while (self.current is not None and self.current in Consts.DIGITOS):
+        is_float = False
+        while (self.current is not None and (self.current in Consts.DIGITOS or self.current == ".")):
+            if (self.current == "."):
+                # Caso encontre dois pontos decimais
+                if (is_float == True):
+                    raise Exception("Erro: Numéro inválido")
+                is_float = True
+                
             num_str += self.current
             self.__advance()
+            
+        if (is_float == True):
+            return Token(Consts.FLOAT, float(num_str))
+            
         return Token(Consts.INT, int(num_str))
+
+    def __make_boolean(self):
+        if (self.code[self.index:self.index+4] == "True"):
+            self.index += 4
+            self.__advance()
+            return Token(Consts.BOOLEAN, True)
+        elif (self.code[self.index:self.index + 5] == "False"):
+            self.index += 5
+            self.__advance()
+            return Token(Consts.BOOLEAN, False)
+        
+        return None
 
     def __make_string(self):
         string_value = ""
@@ -57,6 +103,11 @@ class Lexer:
         while (self.current is not None and self.current in Consts.LETRAS_DIGITOS + '_'):
             id_str += self.current
             self.__advance()
+        # Palavra-Chave
         if (id_str in Consts.KEYS):
             return Token(id_str)
-        return Token(Consts.STRING, id_str)
+        # Palavra reservada
+        elif (id_str in Consts.TIPOS or id_str == ("True" or "False")):
+            return Token(id_str)
+        # Genérico
+        return Token("IDENTIFIER", id_str)

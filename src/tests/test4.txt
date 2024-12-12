@@ -1,0 +1,23 @@
+programa {
+        "Eleonora" {
+                classe: "Ladina";
+                nivel: 2
+                atributos: "forca" 11, "destreza" 17, "constituicao" 14, "inteligencia" 16
+        }
+        
+        cenaraio {
+                descricao: "Um canteiro cheio de arvores, com uma aura sombria, parecendo que alguem observa";
+        }
+
+        item "Espada Longa" {
+                descricao: "Uma espada de ferro com lamina de 70cm bilateral";
+                tipo: "arma";
+        }
+
+        variavel "Floresta Explorada" = False;
+
+        }
+
+}
+
+

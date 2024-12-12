@@ -27,7 +27,7 @@
             "resultado" COLON INT SEMICOLON 
             RBRACE
 
-<Variavel> ::= VARIAVEL STRING ASSIGN <Valor>
+<Variavel> ::= VARIAVEL STRING ASSIGN <Valor> SEMICOLON
 <Valor> ::= STRING | INT | FLOAT | BOOLEAN
 
 <Escolha> ::= ESCOLHA LBRACE <Opcao>* RBRACE
