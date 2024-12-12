@@ -177,3 +177,5 @@ pyrightconfig.json
 .devcontainer/
 
 # End of https://www.toptal.com/developers/gitignore/api/python
+
+*.zip
