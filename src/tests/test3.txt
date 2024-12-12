@@ -1,0 +1,10 @@
+personagem "Eleonora" {
+        classe: "Ladina";
+        nivel: 2;
+        atributos: "forca" 11, "destreza" 17, "constituicao" 14, "inteligencia" 16;
+}
+    
+cenario "Floresta amaldiçoada" {
+        descricao: "Um canteiro cheio de árvores, escuro e com uma aura sombria, pesada, parecendo que alguém está perto";
+        localizacao: "Continente de Eberron";
+}

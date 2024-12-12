@@ -12,20 +12,22 @@
 
 <Cenario> ::= CENARIO STRING LBRACE 
             "descricao" COLON STRING SEMICOLON 
-            "localizacao" COLON STRING SEMICOLON 
+            "itens" COLON <ListaItens>? SEMICOLON 
             RBRACE
 
-<Acao> ::= ACAO STRING LBRACE 
-            "efeito" COLON STRING SEMICOLON 
-            "duracao" COLON INT SEMICOLON 
-            RBRACE
+<ListaItens> ::= <Item> (COMMA <Item>)*
 
 <Item> ::= ITEM STRING LBRACE
             "descricao" COLON STRING SEMICOLON
             "tipo" COLON STRING SEMICOLON
             RBRACE
 
-<Variavel> ::= VARIAVEL STRING ASSIGN <Valor>
+<Acao> ::= ACAO STRING LBRACE 
+            "descricao" COLON STRING SEMICOLON 
+            "resultado" COLON INT SEMICOLON 
+            RBRACE
+
+<Variavel> ::= VARIAVEL STRING ASSIGN <Valor> SEMICOLON
 <Valor> ::= STRING | INT | FLOAT | BOOLEAN
 
 <Escolha> ::= ESCOLHA LBRACE <Opcao>* RBRACE
@@ -36,7 +38,7 @@
             RBRACE
 
 <ElementoAcao> ::= <Acao> | <ModificaVariavel>
-<ModificaVariavel> ::= VARIAVEL STRING ASSIGN <Valor>
+<ModificaVariavel> ::= VARIAVEL STRING ASSIGN <Valor> SEMICOLON
 
 <Condicao> ::= STRING COMPARADOR <Valor> ("AND" <Condicao> | "OR" <Condicao>)?
 

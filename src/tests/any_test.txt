@@ -1,0 +1,7 @@
+programa{
+    personagem "Felicia" {
+        classe: "espadachim";
+        nivel: 5
+        atributos: "forca" 16, "destreza" 13, "constituicao" 14, "inteligencia" 11, "sabedoria" 7, "carisma" 8
+    }
+}
