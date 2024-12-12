@@ -37,8 +37,7 @@
             "condicao" COLON <Condicao>? SEMICOLON 
             RBRACE
 
-<ElementoAcao> ::= <Acao> (COMMA <ModificaVariavel>)*
-<ModificaVariavel> ::= VARIAVEL STRING ASSIGN <Valor> SEMICOLON
+<ElementoAcao> ::= <Acao> (COMMA <Variavel>)*
 
 <Condicao> ::= STRING COMPARADOR <Valor> ("AND" <Condicao> | "OR" <Condicao>)?
 
